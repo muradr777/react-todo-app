@@ -1,22 +1,46 @@
 import React, { Component } from "react";
+import axios from "axios";
 import uuid from "uuid";
 
 class Todo extends Component {
   state = {
     value: "",
     todos: [
-      "This is first Todo",
-      "This is another item",
-      "You need finaly do this"
+      {
+        id: 0,
+        completed: false,
+        title: "This is first Todo"
+      },
+      {
+        id: 2,
+        completed: true,
+        title: "This is another item"
+      },
+      {
+        id: 3,
+        completed: false,
+        title: "You need finaly do this"
+      }
     ]
   };
+
+  // componentDidMount() {
+  //   axios.get("https://jsonplaceholder.typicode.com/todos").then(res => {
+  //     this.setState({ todos: res.data });
+  //   });
+  // }
 
   handleSubmit = e => {
     e.preventDefault();
     const { value, todos } = this.state;
-    todos.push(value);
+    let todo = {
+      userId: 1,
+      id: uuid(),
+      title: value,
+      completed: false
+    };
+    todos.push(todo);
     this.setState({
-      ...this.state,
       value: "",
       todos
     });
@@ -24,9 +48,16 @@ class Todo extends Component {
 
   handleChange = e => {
     this.setState({
-      ...this.state,
       value: e.target.value
     });
+  };
+
+  handleClick = id => {
+    const newTodos = this.state.todos.map(todo => {
+      return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
+    });
+
+    this.setState({ todos: newTodos });
   };
 
   render() {
@@ -36,7 +67,13 @@ class Todo extends Component {
         <h2>Todo List</h2>
         <ol className="o__list">
           {todos.map(todo => (
-            <li key={uuid()}>{todo}</li>
+            <li
+              key={uuid()}
+              onClick={this.handleClick.bind(this, todo.id)}
+              className={todo.completed ? "completed" : ""}
+            >
+              {todo.title}
+            </li>
           ))}
         </ol>
 
