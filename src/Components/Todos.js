@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import uuid from "uuid";
+import Todo from "./Todo";
 
-class Todo extends Component {
+class Todos extends Component {
   state = {
     value: "",
     todos: [
@@ -33,17 +34,20 @@ class Todo extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { value, todos } = this.state;
-    let todo = {
-      userId: 1,
-      id: uuid(),
-      title: value,
-      completed: false
-    };
-    todos.push(todo);
-    this.setState({
-      value: "",
-      todos
-    });
+    if (value.length) {
+      let todo = {
+        userId: 1,
+        id: uuid(),
+        title: value,
+        completed: false
+      };
+      todos.push(todo);
+      this.setState({
+        value: "",
+        todos
+      });
+    }
+    return false;
   };
 
   handleChange = e => {
@@ -67,13 +71,7 @@ class Todo extends Component {
         <h2>Todo List</h2>
         <ol className="o__list">
           {todos.map(todo => (
-            <li
-              key={uuid()}
-              onClick={this.handleClick.bind(this, todo.id)}
-              className={todo.completed ? "completed" : ""}
-            >
-              {todo.title}
-            </li>
+            <Todo key={uuid()} {...todo} handleClick={this.handleClick} />
           ))}
         </ol>
 
@@ -91,4 +89,4 @@ class Todo extends Component {
   }
 }
 
-export default Todo;
+export default Todos;

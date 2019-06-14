@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "./Todo";
+import Todo from "./Components/Todos";
 import "./App.sass";
 
 function App() {
