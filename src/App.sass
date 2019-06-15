@@ -1,8 +1,48 @@
-body
+.wrapper
   padding: 3em
+  .list-title
+    color: #333
+    font-size: 22px
+    font-weight: 600
+    font-family: "Tahoma"
+  .todo-list
+    width: 500px
+    margin-left: auto
+    margin-right: auto
+    padding: 12px 15px 
+    border-radius: 4px
+    background-color: #f9ed9f
+    box-shadow: 0 2px 2px 0 #ddd
+  .create-todo-form
+    display: flex
+    >input
+      width: 80%
+      flex-grow: 2
+      padding: 5px 8px
+      background-color: transparent
+      border: none
+      border-bottom: 1px solid #ddd
+      transition: border-color .3s
+      &:hover, &:focus
+        outline: none
+        border-color: #333333
+    >button
+      display: none
 .o__list
   padding-left: 1.5em
   li
-    cursor: pointer
-  li.completed
+    position: relative
+    vertical-align: middle
+    >span
+      width: 250px
+      cursor: pointer
+      margin-right: 10px
+    >i.fa-times
+      top: 50%
+      color: red
+      right: 10px
+      cursor: pointer
+      position: absolute
+      transform: translateY(-50%)
+  li.completed > span
     text-decoration: line-through

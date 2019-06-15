@@ -1,13 +1,11 @@
 import React from "react";
 
 const Todo = props => {
-  const { id, completed, title, handleClick } = props;
+  const { id, completed, title, handleClick, handleDelete } = props;
   return (
-    <li
-      onClick={handleClick.bind(this, id)}
-      className={completed ? "completed" : ""}
-    >
-      {title}
+    <li className={completed ? "completed" : ""}>
+      <span onClick={handleClick.bind(this, id)}>{title}</span>
+      <i className="fas fa-times" onClick={handleDelete.bind(this, id)} />
     </li>
   );
 };

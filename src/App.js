@@ -1,12 +1,21 @@
 import React from "react";
-import Todo from "./Components/Todos";
+import Todos from "./Components/Todos";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
 import "./App.sass";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 function App() {
   return (
-    <div className="App">
-      <Todo />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <div className="wrapper">
+          <Todos />
+        </div>
+      </div>
+    </Provider>
   );
 }
 
