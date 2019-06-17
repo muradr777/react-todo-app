@@ -9,9 +9,6 @@ import { getTodos } from "../actions/todoActions";
 class Todos extends Component {
   componentDidMount() {
     this.props.getTodos();
-    // axios.get("https://jsonplaceholder.typicode.com/todos").then(res => {
-    //   this.setState({ todos: res.data });
-    // });
   }
 
   render() {

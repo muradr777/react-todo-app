@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addTodo } from "../actions/todoActions";
-import uuid from "uuid";
 
 class AddTodo extends Component {
   state = {
@@ -20,7 +19,6 @@ class AddTodo extends Component {
     const { title } = this.state;
 
     const newTodo = {
-      id: uuid(),
       title,
       completed: false
     };

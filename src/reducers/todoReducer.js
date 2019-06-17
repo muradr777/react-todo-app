@@ -6,29 +6,13 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  todos: [
-    {
-      id: 0,
-      completed: false,
-      title: "This is first Todo This is first TodoThis is first Todo111"
-    },
-    {
-      id: 2,
-      completed: true,
-      title: "This is another item"
-    },
-    {
-      id: 3,
-      completed: false,
-      title: "You need finaly do this"
-    }
-  ]
+  todos: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_TODOS:
-      return { ...state };
+      return { ...state, todos: action.payload };
     case ADD_TODO:
       return { ...state, todos: [...state.todos, action.payload] };
     case DELETE_TODO:
